@@ -1,4 +1,4 @@
-import catsService from './cats.service.ts';
+import catsService from './cats.service';
 import type { Context } from 'hono';
 
 export async function getCats(c: Context): Promise<void | Response> {

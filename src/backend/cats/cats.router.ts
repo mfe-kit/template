@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { getCats } from './cats.controller.ts';
+import { getCats } from './cats.controller';
 
 const catsRouter = new Hono();
 

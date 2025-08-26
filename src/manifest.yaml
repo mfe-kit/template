@@ -1,12 +1,12 @@
 version: '1.0'
-name: __MFE__
-tag: 'mfe-seed'
+name: MfeKitTemplate
+tag: 'mfe-kit-template'
 url:
   frontend: __FRONTEND__
   prerender: __BACKEND__/prerender
 publisher:
-  name: __NAME__
-  email: __CONTACT__
+  name: Contact Person
+  email: contact.person@example.com
 description: MFE description
 repository: 'https://github.com/openmfe'
 documentation: 'openmfe/index.md'
@@ -43,7 +43,7 @@ attributes:
       type: boolean
 
 events:
-  - name: __MFE__.ready
+  - name: mfe-kit-template.ready
     description: This event is fired when MFE is ready to use
     schema:
       type: object
@@ -52,7 +52,7 @@ events:
           type: string
           description: the message of the event
 
-  - name: __MFE__.loaded
+  - name: mfe-kit-template.loaded
     description: This event is fired when MFE loaded data from API
     schema:
       type: object

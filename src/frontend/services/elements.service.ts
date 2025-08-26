@@ -1,5 +1,3 @@
-//index file: ElementsService.init(this.shadowRoot!);
-
 export class ElementsService {
   private readonly shadowRoot: ShadowRoot | undefined;
   private static instance: ElementsService;

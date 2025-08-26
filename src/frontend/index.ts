@@ -9,7 +9,7 @@ import { ActionIds } from './constants';
 import { getCats, ElementsService } from './services';
 
 @Component
-export class MfeSeed extends HTMLElement {
+export class MfeKitTemplate extends HTMLElement {
   @Attribute() locale: Locale = 'en_GB';
 
   private isReady?: boolean;
@@ -142,7 +142,7 @@ export class MfeSeed extends HTMLElement {
 }
 
 if (!customElements.get(namespace)) {
-  customElements.define('mfe-seed', MfeSeed);
+  customElements.define('mfe-kit-template', MfeKitTemplate);
 }
 
 export const prerender = () => Prerender();

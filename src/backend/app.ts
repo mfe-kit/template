@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 
-import catsRouter from './cats/cats.router.ts';
-import coreRouter from './core/core.router.ts';
+import catsRouter from './cats/cats.router';
+import coreRouter from './core/core.router';
 
 const app = new Hono();
 
