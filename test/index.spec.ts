@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { namespace } from '../src/frontend/config';
 import { waitForSelector } from './utils';
-import { MfeSeed } from '../src/frontend';
+import { MfeKitTemplate } from '../src/frontend';
 
 describe('index.ts', () => {
   beforeAll(async () => {
     if (!customElements.get(namespace)) {
-      customElements.define(namespace, MfeSeed);
+      customElements.define(namespace, MfeKitTemplate);
       await customElements.whenDefined(namespace);
     }
   });

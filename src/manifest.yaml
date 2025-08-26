@@ -8,7 +8,7 @@ publisher:
   name: Contact Person
   email: contact.person@example.com
 description: MFE description
-repository: 'https://github.com/openmfe'
+repository: 'https://github.com/mfe-kit/template.git'
 documentation: 'openmfe/index.md'
 
 attributes:
