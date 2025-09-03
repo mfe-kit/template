@@ -20,7 +20,7 @@ export class MfeKitTemplate extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     events.setHost(this);
-    l10n.initialize(this.locale);
+    l10n.useLocale(this.locale);
     ElementsService.init(this.shadowRoot!);
     this.data = [];
     this.isReady = false;
@@ -132,7 +132,7 @@ export class MfeKitTemplate extends HTMLElement {
   @Watch('locale')
   updateName(oldValue: string, newValue: string) {
     console.info('updateLocale', oldValue, newValue);
-    l10n.initialize(this.locale);
+    l10n.useLocale(this.locale);
     if (this.isReady) {
       this.render();
     }

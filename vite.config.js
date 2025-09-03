@@ -27,6 +27,11 @@ export default defineConfig(({ mode }) => {
       all: true,
       exclude: ['**/*.d.ts', 'test/**', '**/node_modules/**'],
     },
+    server: {
+      deps: {
+        inline: ['@mfe-kit/core'],
+      },
+    },
   };
 
   return {

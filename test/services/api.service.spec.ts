@@ -10,7 +10,7 @@ describe('getCats', () => {
     // Mock global fetch
     global.fetch = vi.fn().mockResolvedValue({
       json: vi.fn().mockResolvedValue(mockData),
-    }) as any;
+    });
 
     const result = await getCats(controller);
 
@@ -27,7 +27,7 @@ describe('getCats', () => {
   it('should propagate fetch error', async () => {
     const controller = new AbortController();
 
-    global.fetch = vi.fn().mockRejectedValue(new Error('Network error')) as any;
+    global.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
 
     await expect(getCats(controller)).rejects.toThrow('Network error');
   });
@@ -40,7 +40,7 @@ describe('getCats', () => {
       .fn()
       .mockImplementation(() =>
         Promise.reject(new DOMException('Aborted', 'AbortError')),
-      ) as any;
+      );
 
     await expect(getCats(controller)).rejects.toThrow('Aborted');
   });
