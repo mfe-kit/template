@@ -1,6 +1,6 @@
 {
   "name": "@mfe-kit/template",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "repository": {
     "type": "git",
@@ -9,22 +9,23 @@
   "scripts": {
     "prepare": "node .husky/install.mjs",
     "dev": "npm-run-all -pl dev:*",
-    "dev:fe": "vite",
+    "dev:fe": "vite -c vite.config.frontend.js",
     "dev:be": "NODE_NO_WARNINGS=1 tsx watch --experimental-strip-types --env-file=./src/.env src/backend/server.ts",
     "build": "rm -rf dist && npm run build:be && npm run build:fe",
-    "build:fe": "vite build --mode production",
-    "build:be": "node --env-file=src/.env.production build.js",
-    "test": "vitest --config vite.config.js run --coverage",
+    "build:fe": "vite build --mode production -c vite.config.frontend.js",
+    "build:be": "node --env-file=src/.env.production build.js && vite build -c vite.config.ssr.js",
+    "test": "vitest --config vite.config.frontend.js run --coverage",
     "lint": "eslint src",
     "check": "prettier --ignore-path .gitignore --check src/** --log-level warn",
     "check:fix": "prettier --ignore-path .gitignore --write {src,test}/; eslint --fix src"
   },
   "dependencies": {
     "@hono/node-server": "^1.14.3",
-    "@mfe-kit/core": "github:mfe-kit/core#v0.2.3"
+    "@mfe-kit/core": "github:mfe-kit/core#v0.2.5"
   },
   "devDependencies": {
-    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.2.3",
+    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.3.3",
+    "@types/jsdom": "^21.1.7",
     "@types/node": "^22.15.21",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
@@ -37,11 +38,11 @@
     "jsdom": "^26.1.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "^3.6.2",
-    "sass-embedded": "^1.89.2",
+    "sass": "^1.92.1",
     "tsx": "^4.20.3",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.37.0",
-    "vite": "^6.3.5",
+    "vite": "^7.1.4",
     "vite-plugin-static-copy": "^3.1.1",
     "vitest": "^3.2.4"
   }
