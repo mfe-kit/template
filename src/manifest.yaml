@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mfe-kit/dev-tools/v0.4.0/dist/configs/manifest.schema.json
+
 version: '1.0'
 name: MfeKitTemplate
 tag: 'mfe-kit-template'

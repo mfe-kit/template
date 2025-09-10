@@ -1,6 +1,6 @@
 {
   "name": "@mfe-kit/template",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "type": "module",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "@mfe-kit/core": "github:mfe-kit/core#v0.2.5"
   },
   "devDependencies": {
-    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.3.3",
+    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.4.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.15.21",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
