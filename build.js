@@ -25,6 +25,7 @@ esbuild
     bundle: true,
     minify: true,
     sourcemap: false,
+    external: ['./frontend.es.mjs', 'lightningcss'],
     platform: 'node',
     target: 'node24',
     format: 'esm',
