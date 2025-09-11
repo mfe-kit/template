@@ -1,22 +1,13 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
-import { JSDOM } from 'jsdom';
-
-import { frontendModuleMiddleware } from './core/core.middleware';
+import { coreRouter, ssrMiddleware } from '@mfe-kit/core/backend';
 
 import catsRouter from './cats/cats.router';
-import coreRouter from './core/core.router';
-
-const jsdom = new JSDOM();
-global.document = jsdom.window.document;
-global.HTMLElement = jsdom.window.HTMLElement;
-global.customElements = jsdom.window.customElements;
-global.CustomEvent = jsdom.window.CustomEvent;
 
 const app = new Hono();
 
 app.use('/api/*', cors());
-app.use(frontendModuleMiddleware);
+app.use(ssrMiddleware);
 
 app.onError((err, c) => {
   console.error('Unhandled error:', err);
