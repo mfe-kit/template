@@ -11,7 +11,7 @@ const en_GB = {
   },
 };
 
-const uk_UA = {
+const uk_UA: Resource = {
   general: {
     title: 'Котячий інспектор',
     btnText: 'Інший',
