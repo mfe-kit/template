@@ -1,6 +1,6 @@
 {
   "name": "@mfe-kit/template",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
   "repository": {
     "type": "git",
@@ -17,7 +17,10 @@
     "test": "vitest --config vite.config.frontend.js run --coverage",
     "lint": "eslint src",
     "check": "prettier --ignore-path .gitignore --check src/** --log-level warn",
-    "check:fix": "prettier --ignore-path .gitignore --write {src,test}/; eslint --fix src"
+    "check:fix": "prettier --ignore-path .gitignore --write {src,test}/; eslint --fix src",
+    "version:patch": "npm version patch --no-git-tag-version",
+    "version:minor": "npm version minor --no-git-tag-version",
+    "version:major": "npm version major --no-git-tag-version"
   },
   "dependencies": {
     "@mfe-kit/core": "github:mfe-kit/core#v0.3.1",
