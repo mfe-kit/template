@@ -31,6 +31,7 @@ export class MfeKitTemplate extends HTMLElement {
     await this.init();
     this.render();
     this.initEventListeners();
+    this.setAttribute('version', import.meta.env.VITE_APP_VERSION);
     this.isReady = true;
     events.publish().ready('MFE ready!');
   }
