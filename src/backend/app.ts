@@ -3,6 +3,7 @@ import { cors } from 'hono/cors';
 import { coreRouter, ssrMiddleware } from '@mfe-kit/core/backend';
 
 import catsRouter from './cats/cats.router';
+import ssrRouter from './ssr/ssr.router';
 
 const app = new Hono();
 
@@ -16,5 +17,6 @@ app.onError((err, c) => {
 
 app.route('/api', coreRouter);
 app.route('/api', catsRouter);
+app.route('/api', ssrRouter);
 
 export default app;

@@ -7,29 +7,37 @@ import { l10n } from '../l10n';
 import { Prerender } from './prerender';
 import { ActionIds } from './constants';
 import { getCats, ElementsService } from './services';
+import { renderSSR } from './ssr';
 
 @Component
 export class MfeKitTemplate extends HTMLElement {
   @Attribute() locale: Locale = 'en_GB';
 
   private isReady?: boolean;
+  private isSSR?: boolean;
   private apiAbortController?: AbortController;
   private data: Array<CatResponse>;
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    if (!this.shadowRoot) {
+      this.attachShadow({ mode: 'open' });
+    } else {
+      this.isSSR = true;
+    }
+    this.data = [];
     events.setHost(this);
     l10n.useLocale(this.locale);
     ElementsService.init(this.shadowRoot!);
-    this.data = [];
     this.isReady = false;
   }
 
   //#region Init
   async connectedCallback() {
-    await this.init();
-    this.render();
+    if (!this.isSSR) {
+      await this.init();
+      this.render();
+    }
     this.initEventListeners();
     this.setAttribute('version', import.meta.env.VITE_APP_VERSION);
     this.isReady = true;
@@ -147,3 +155,4 @@ if (!customElements.get(namespace)) {
 }
 
 export const prerender = () => Prerender();
+export const ssr = renderSSR(MfeKitTemplate, namespace);

@@ -1,9 +1,7 @@
-declare module '*.scss?inline' {
-  const content: string;
-  export default content;
-}
-
 /// <reference types="vite/client" />
+import 'hono';
+import type { CatResponse, SSRProps } from './types';
+
 interface ImportMetaEnv {
   readonly VITE_APP_VERSION: string;
   readonly VITE_BACKEND_URL: string;
@@ -14,4 +12,19 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;
+}
+
+declare module '*.scss?inline' {
+  const content: string;
+  export default content;
+}
+
+type FrontendModule = Record<string, () => string> & {
+  ssr: (props: SSRProps, data: CatResponse) => string;
+} & { prerender: () => string };
+
+declare module 'hono' {
+  interface HonoRequest {
+    getFrontendModule: () => Promise<FrontendModule>;
+  }
 }
