@@ -1,6 +1,6 @@
 {
   "name": "@mfe-kit/template",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "type": "module",
   "repository": {
     "type": "git",
@@ -23,11 +23,11 @@
     "version:major": "npm version major --no-git-tag-version"
   },
   "dependencies": {
-    "@mfe-kit/core": "github:mfe-kit/core#v0.3.1",
+    "@mfe-kit/core": "github:mfe-kit/core#v0.3.2",
     "@hono/node-server": "^1.14.3"
   },
   "devDependencies": {
-    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.4.5",
+    "@mfe-kit/dev-tools": "github:mfe-kit/dev-tools#v0.5.2",
     "@types/node": "^22.15.21",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",

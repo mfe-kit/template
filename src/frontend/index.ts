@@ -37,11 +37,21 @@ export class MfeKitTemplate extends HTMLElement {
     if (!this.isSSR) {
       await this.init();
       this.render();
+    } else {
+      this.hydrateSSR();
     }
     this.initEventListeners();
     this.setAttribute('version', import.meta.env.VITE_APP_VERSION);
     this.isReady = true;
     events.publish().ready('MFE ready!');
+  }
+
+  hydrateSSR(): void {
+    const ssrScript = this.querySelector('script[data-ssr]');
+    if (ssrScript) {
+      this.data = JSON.parse(ssrScript.textContent || '[]');
+      ssrScript.remove();
+    }
   }
 
   async init(): Promise<void> {
@@ -139,7 +149,7 @@ export class MfeKitTemplate extends HTMLElement {
 
   //#region Watcher
   @Watch('locale')
-  updateName(oldValue: string, newValue: string) {
+  updateLocale(oldValue: string, newValue: string) {
     console.info('updateLocale', oldValue, newValue);
     l10n.useLocale(this.locale);
     if (this.isReady) {
