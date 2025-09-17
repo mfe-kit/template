@@ -12,6 +12,8 @@ import { renderSSR } from './ssr';
 @Component
 export class MfeKitTemplate extends HTMLElement {
   @Attribute() locale: Locale = 'en_GB';
+  @Attribute() colorTheme!: string;
+  @Attribute() colorMode!: string;
 
   private isReady?: boolean;
   private isSSR?: boolean;
@@ -106,6 +108,12 @@ export class MfeKitTemplate extends HTMLElement {
     this.shadowRoot!.innerHTML = Prerender();
   }
 
+  renderOnReady(): void {
+    if (this.isReady) {
+      this.render();
+    }
+  }
+
   render(): void {
     this.shadowRoot!.innerHTML = this.template();
   }
@@ -152,9 +160,17 @@ export class MfeKitTemplate extends HTMLElement {
   updateLocale(oldValue: string, newValue: string) {
     console.info('updateLocale', oldValue, newValue);
     l10n.useLocale(this.locale);
-    if (this.isReady) {
-      this.render();
-    }
+    this.renderOnReady();
+  }
+
+  @Watch('colorMode')
+  updateColorMode() {
+    this.renderOnReady();
+  }
+
+  @Watch('colorTheme')
+  updateColorTheme() {
+    this.renderOnReady();
   }
 
   //#endregion

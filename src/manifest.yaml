@@ -22,6 +22,14 @@ attributes:
       type: string
       enum: ['light', 'dark']
 
+  - name: color-theme
+    description: The color-theme parameter describes which color mode modifier should be used
+    default: 'default'
+    required: true
+    schema:
+      type: string
+      enum: ['default', 'strict']
+
   - name: locale
     description: The locale is given to support a language
     default: 'en_GB'
@@ -88,3 +96,4 @@ example:
     test: test
     locale: en_GB
     color-mode: light
+    color-theme: default

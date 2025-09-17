@@ -5,18 +5,39 @@
   font-size: 16px;
 }
 
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
+.default.light,
+[color-theme='default'][color-mode='light'],
+:root[color-theme='default'][color-mode='light'],
+:host([color-theme='default'][color-mode='light']) {
+  --bg-color: #f0f8ff;
+  --text-color: #102a43;
   --primary-color: #007bff;
-  --error-color: #dc3545;
+  --secondary-color: #00bfa5;
+  --error-color: #ff4c4c;
 }
 
-[data-theme='dark'] {
-  --bg-color: #1e1e1e;
-  --text-color: #f1f1f1;
-  --primary-color: #0d6efd;
-  --error-color: #dc3545;
+:host([color-theme='default'][color-mode='dark']) {
+  --bg-color: #001f3f;
+  --text-color: #c0e0ff;
+  --primary-color: #3399ff;
+  --secondary-color: #00e0b0;
+  --error-color: #ff6b6b;
+}
+
+:host([color-theme='strict'][color-mode='light']) {
+  --bg-color: #fff8e7;
+  --text-color: #4b2e05;
+  --primary-color: #ff9900;
+  --secondary-color: #cc3300;
+  --error-color: #990000;
+}
+
+:host([color-theme='strict'][color-mode='dark']) {
+  --bg-color: #2b0d00;
+  --text-color: #ffe6c2;
+  --primary-color: #ff6600;
+  --secondary-color: #ff3300;
+  --error-color: #ff0000;
 }
 
 .fallback-error-message {
@@ -49,9 +70,10 @@
     box-shadow: none;
     border: none;
     cursor: pointer;
-    background-color: #c6c6c6;
+    color: var(--text-color);
+    background-color: var(--primary-color);
     &:hover {
-      background-color: #a69797;
+      background-color: var(--secondary-color);
     }
   }
 }
