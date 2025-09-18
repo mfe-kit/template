@@ -8,6 +8,8 @@ import { Prerender } from './prerender';
 import { ActionIds } from './constants';
 import { getCats, ElementsService } from './services';
 import { renderSSR } from './ssr';
+import { Spinner } from './components/spinner';
+import { CatImage } from './components/cat-image';
 
 @Component
 export class MfeKitTemplate extends HTMLElement {
@@ -19,6 +21,8 @@ export class MfeKitTemplate extends HTMLElement {
   private isSSR?: boolean;
   private apiAbortController?: AbortController;
   private data: Array<CatResponse>;
+  private isLoading: boolean;
+  private eventListeners: { [key: string]: Function };
 
   constructor() {
     super();
@@ -28,6 +32,8 @@ export class MfeKitTemplate extends HTMLElement {
       this.isSSR = true;
     }
     this.data = [];
+    this.isLoading = false;
+    this.eventListeners = {};
     events.setHost(this);
     l10n.useLocale(this.locale);
     ElementsService.init(this.shadowRoot!);
@@ -35,7 +41,7 @@ export class MfeKitTemplate extends HTMLElement {
   }
 
   //#region Init
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     if (!this.isSSR) {
       await this.init();
       this.render();
@@ -46,6 +52,15 @@ export class MfeKitTemplate extends HTMLElement {
     this.setAttribute('version', import.meta.env.VITE_APP_VERSION);
     this.isReady = true;
     events.publish().ready('MFE ready!');
+  }
+
+  disconnectedCallback(): void {
+    this.shadowRoot!.removeEventListener('click', (e: Event) =>
+      this.eventListeners.click(e),
+    );
+    this.shadowRoot!.removeEventListener('keypress', (e: Event) =>
+      this.eventListeners.keypress(e),
+    );
   }
 
   hydrateSSR(): void {
@@ -66,7 +81,6 @@ export class MfeKitTemplate extends HTMLElement {
       this.apiAbortController.abort();
     }
     this.apiAbortController = new AbortController();
-
     try {
       this.data = await getCats(this.apiAbortController);
       events.publish().loaded(this.data);
@@ -76,16 +90,21 @@ export class MfeKitTemplate extends HTMLElement {
   }
 
   initEventListeners(): void {
-    this.shadowRoot!.addEventListener('click', (e: Event) =>
-      this.clickEventHandler(e),
-    );
-    this.shadowRoot!.addEventListener('keypress', (e: Event) => {
+    this.eventListeners.click = (e: Event) => this.clickEventHandler(e);
+    this.eventListeners.keypress = (e: Event) => {
       if ((e as KeyboardEvent).key === 'Enter') {
         e.preventDefault();
         e.stopPropagation();
         this.clickEventHandler(e);
       }
-    });
+    };
+
+    this.shadowRoot!.addEventListener('click', (e: Event) =>
+      this.eventListeners.click(e),
+    );
+    this.shadowRoot!.addEventListener('keypress', (e: Event) =>
+      this.eventListeners.keypress(e),
+    );
   }
 
   //#endregion
@@ -126,7 +145,8 @@ export class MfeKitTemplate extends HTMLElement {
             </style>
             <h3 class="${namespace}-title">${l10n.t('general.title')}</h3>
             <div class="${namespace}-container">
-                <img class="${namespace}-image" src="${this.data[0]?.url}" alt="cat" />
+                ${Spinner(this.isLoading)}
+                ${CatImage(this.data[0]?.url, this.isLoading)}
                 <button data-action="${ActionIds.AnotherOneBtn}" class="${namespace}-btn">${l10n.t('general.btnText')}</button>
             </div>
         </div>
@@ -149,8 +169,12 @@ export class MfeKitTemplate extends HTMLElement {
   }
 
   getAnotherCat(): void {
-    this.renderSkeleton();
-    this.loadData().then(() => this.render());
+    this.isLoading = true;
+    this.renderOnReady();
+    this.loadData().then(() => {
+      this.isLoading = false;
+      this.renderOnReady();
+    });
   }
 
   //#endregion

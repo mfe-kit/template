@@ -57,10 +57,9 @@
     margin-bottom: 1rem;
   }
   &-image {
-    height: 100%;
-    width: 100%;
-    max-height: 480px;
-    max-width: 640px;
+    height: 480px;
+    width: 640px;
+    object-fit: cover;
   }
   &-btn {
     height: 2rem;
@@ -75,5 +74,13 @@
     &:hover {
       background-color: var(--secondary-color);
     }
+  }
+  &-spinner {
+    height: 100%;
+    width: 100%;
+    max-width: 480px;
+  }
+  &-hide {
+    display: none !important;
   }
 }

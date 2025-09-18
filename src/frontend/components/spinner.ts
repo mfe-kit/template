@@ -1,15 +1,8 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+import { namespace } from '../config';
 
-exports[`index.ts > should render correctly 1`] = `
-"
-        <div class="mfe-kit-template">
-            <style>
-              
-            </style>
-            <h3 class="mfe-kit-template-title">Cat inspector</h3>
-            <div class="mfe-kit-template-container">
-                
-    <div class="mfe-kit-template-spinner mfe-kit-template-hide">
+export const Spinner = (isLoading: boolean): string => {
+  return `
+    <div class="${namespace}-spinner ${!isLoading ? namespace + '-hide' : ''}">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
         <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
           <stop offset="0" stop-color="#007bff"></stop>
@@ -24,14 +17,5 @@ exports[`index.ts > should render correctly 1`] = `
         <circle transform-origin="center" fill="none" opacity=".2" stroke="#00e0b0" stroke-width="15" stroke-linecap="round" cx="100" cy="100" r="70"></circle>
       </svg>
     </div>
-    
-                
-    <div class="mfe-kit-template-img ">
-      <img class="mfe-kit-template-image" src="undefined" alt="cat">
-    </div>
-  
-                <button data-action="another-one-btn" class="mfe-kit-template-btn">Another one</button>
-            </div>
-        </div>
-    "
-`;
+    `;
+};
