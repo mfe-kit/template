@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from 'vitest';
-import { getCats } from '../../src/frontend/services';
+import { getCats } from '../../../src/frontend/services';
 
 const mockData = [{ id: '1', name: 'Eren' }];
 

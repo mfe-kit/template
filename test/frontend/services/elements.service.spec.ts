@@ -1,5 +1,5 @@
 import { describe, it, beforeAll, expect, vi, afterEach } from 'vitest';
-import { ElementsService } from '../../src/frontend/services';
+import { ElementsService } from '../../../src/frontend/services';
 
 describe('ElementsService', () => {
   let shadowRoot: ShadowRoot;

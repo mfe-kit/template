@@ -20,7 +20,7 @@ declare module '*.scss?inline' {
 }
 
 type FrontendModule = Record<string, () => string> & {
-  ssr: (props: SSRProps, data: CatResponse) => string;
+  ssr: (props: SSRProps, data: Array<CatResponse>) => string;
 } & { prerender: () => string };
 
 declare module 'hono' {

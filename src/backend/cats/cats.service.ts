@@ -1,12 +1,12 @@
 import type { CatResponse } from '../../types';
 
-const CATS_URL = process.env.VITE_CATS_SERVICE_URL || '';
+const CATS_URL = process.env.VITE_CATS_SERVICE_URL!;
 
 export default {
   getCats,
 };
 
-async function getCats(): Promise<CatResponse> {
+async function getCats(): Promise<CatResponse[]> {
   const res = await fetch(CATS_URL, {
     headers: {
       'Content-Type': 'application/json',

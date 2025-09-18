@@ -8,8 +8,8 @@ import { Prerender } from './prerender';
 import { ActionIds } from './constants';
 import { getCats, ElementsService } from './services';
 import { renderSSR } from './ssr';
-import { Spinner } from './components/spinner';
-import { CatImage } from './components/cat-image';
+import { Spinner } from './snippets/spinner';
+import { CatImage } from './snippets/cat-image';
 
 @Component
 export class MfeKitTemplate extends HTMLElement {

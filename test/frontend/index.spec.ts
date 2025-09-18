@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { namespace } from '../src/frontend/config';
-import { waitForSelector } from './utils';
-import { MfeKitTemplate } from '../src/frontend';
+import { namespace } from '../../src/frontend/config';
+import { waitForSelector } from '../utils';
+import { MfeKitTemplate } from '../../src/frontend';
 
 describe('index.ts', () => {
   beforeAll(async () => {

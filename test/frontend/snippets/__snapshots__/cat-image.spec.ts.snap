@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CatImage > should hide image 1`] = `
+"
+    <div class="mfe-kit-template-img mfe-kit-template-hide">
+      <img class="mfe-kit-template-image" src="testUrl" alt="cat" />
+    </div>
+  "
+`;
+
+exports[`CatImage > should show image 1`] = `
+"
+    <div class="mfe-kit-template-img ">
+      <img class="mfe-kit-template-image" src="testUrl" alt="cat" />
+    </div>
+  "
+`;
