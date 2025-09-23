@@ -1,17 +1,5 @@
+import { useSpreadAttributes, type Instantiable } from '@mfe-kit/core';
 import type { CatResponse } from '../types';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Instantiable<T = any> = { new (...args: any[]): T };
-
-export const useSpreadAttributes = (
-  props: Record<string, string[]>,
-): string => {
-  let result = '';
-  for (const key in props) {
-    result += `${key}=${props[key]} `;
-  }
-  return result;
-};
 
 export const renderSSR =
   (Target: Instantiable, namespace: string) =>

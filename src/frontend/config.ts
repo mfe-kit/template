@@ -1,1 +1,1 @@
-export const namespace = import.meta.env.VITE_MFE_NAME;
+export const namespace: string = import.meta.env.VITE_MFE_NAME;
