@@ -4,7 +4,7 @@ import type { CatResponse } from '../types';
 export const renderSSR =
   (Target: Instantiable, namespace: string) =>
   (props: Record<string, string[]>, data: Array<CatResponse>) => {
-    const component = new Target(props, data);
+    const component = new Target();
     component.data = data;
     for (const key in props) {
       component.setAttribute(key, props[key]);
