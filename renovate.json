@@ -8,7 +8,8 @@
       "matchPackageNames": ["@mfe-kit/dev-tools", "@mfe-kit/core"],
       "automerge": true,
       "stabilityDays": 0,
-      "prCreation": "immediate"
+      "prCreation": "immediate",
+      "minimumReleaseAge": null
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
