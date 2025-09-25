@@ -2,19 +2,17 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "stabilityDays": 5,
-  "internalChecksAsSuccess": true,
+  "platformAutomerge": true,
   "packageRules": [
     {
       "matchPackageNames": ["@mfe-kit/dev-tools", "@mfe-kit/core"],
       "automerge": true,
       "stabilityDays": 0,
-      "prCreation": "immediate",
       "minimumReleaseAge": null
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }
-  ],
-  "platformAutomerge": true
+  ]
 }
