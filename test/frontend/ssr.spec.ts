@@ -24,7 +24,9 @@ describe('renderSSR', () => {
 
     const namespace = 'my-element';
     const props = { id: ['test'], class: ['my-class'] };
-    const data: Array<CatResponse> = [{ id: '1', height: 1, width: 1, url: 'url' }];
+    const data: Array<CatResponse> = [
+      { id: '1', height: 1, width: 1, url: 'url' },
+    ];
 
     const ssrRender = renderSSR(MockComponent, namespace);
     const html = ssrRender(props, data);
@@ -52,7 +54,9 @@ describe('renderSSR', () => {
     }
 
     const ssrRender = renderSSR(MockComponent, 'test-el');
-    const data: Array<CatResponse> = [{ id: '1', height: 1, width: 1, url: 'url' }];
+    const data: Array<CatResponse> = [
+      { id: '1', height: 1, width: 1, url: 'url' },
+    ];
     const html = ssrRender({}, data);
 
     expect(html).toContain(JSON.stringify(data));
